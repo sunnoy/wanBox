@@ -1,0 +1,17 @@
+name: build-test
+on: workflow_dispatch
+jobs:
+  msvc:
+    env:
+      CMAKE: cmake.exe
+      WIX: ${{ github.workspace }}\wix\
+
+    name: 'openvpn-build'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout openvpn-build
+        uses: actions/checkout@v3
+      - name: check
+        run: |
+          ls -lh
