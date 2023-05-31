@@ -9,18 +9,20 @@ jobs:
     runs-on: ubuntu-latest
     env:
       WIX: ${{ github.workspace }}
+      MM: ${{github.workflow}}
 
     steps:
       - name: Checkout openvpn-build
         uses: actions/checkout@v3
       - name: check
+        working-directory: setup
         run: |
-          ls -lh /
-          echo $WIX > $WIX/sss
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v3.1.2
-        with:
-          # Artifact name
-          name: okkk
-          # A file, directory or wildcard pattern that describes what to upload
-          path: ${{ github.workspace }}/sss
+          ls -lh 
+          bash -x install.sh
+      # - name: Upload a Build Artifact
+      #   uses: actions/upload-artifact@v3.1.2
+      #   with:
+      #     # Artifact name
+      #     name: okkk
+      #     # A file, directory or wildcard pattern that describes what to upload
+      #     path: ${{ github.workspace }}/sss
